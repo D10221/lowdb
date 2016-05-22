@@ -17,14 +17,15 @@
     "extendable"
   ],
   "main": ".",
+  "typings": "built/lowdb.d.ts",
   "scripts": {
-    "test": "babel-node test/all | tap-spec",
+    "test": "babel-node --sourceMaps=inline test/all | tap-spec",
     "prepublish": "npm run build",
     "precommit": "npm test",
-    "build": "npm run babel && npm run umd && npm run min",
-    "babel": "babel src --out-dir . --ignore dist.js",
-    "umd": "webpack src/dist.js dist/lowdb.js --output-library low",
-    "min": "webpack -p src/dist.js dist/lowdb.min.js --output-library low"
+    "build": "npm run ts && npm run umd && npm run min ",
+    "umd": "webpack built/dist.js dist/lowdb.js --output-library low",
+    "min": "webpack -p built/dist.js dist/lowdb.min.js --output-library low",
+    "ts": "tsc -p ."
   },
   "repository": {
     "type": "git",

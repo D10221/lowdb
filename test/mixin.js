@@ -1,5 +1,5 @@
 const test = require('tape')
-const low = require('../src')
+var low = require('../built');
 
 test('mixin', t => {
   const db = low()
