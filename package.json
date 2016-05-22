@@ -17,7 +17,7 @@
     "extendable"
   ],
   "main": ".",
-  "typings": "built/lowdb.d.ts",
+  "typings": "src/lowdb.d.ts",
   "scripts": {
     "test": "babel-node --sourceMaps=inline test/all | tap-spec",
     "prepublish": "npm run build",

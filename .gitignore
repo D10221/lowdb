@@ -6,3 +6,5 @@ tmp
 /*.js
 dist
 !webpack.config.js
+built/
+typings/
