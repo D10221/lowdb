@@ -1,11 +1,7 @@
 import * as lodash from 'lodash';
-
-var isPromise = require('is-promise') as IsPromise;
-
 import LoDashExplicitWrapper = _.LoDashExplicitWrapper;
-
-import {LowStorage, LowChain, LowOptions} from "./lowdb";
-
+import {LowChain, LowOptions} from "./interfaces";
+import {isPromise} from "./util";
 import LoDashStatic = _.LoDashStatic;
 
 
@@ -19,7 +15,7 @@ import LoDashStatic = _.LoDashStatic;
 //
 // is the same as:
 // _.chain(array).method().value()
-function lowChain<T>(_, array:T[], save): LowChain<T> {
+function lowChain<T>(_, array:T[], save):LowChain<T> {
 
     const chain = _.chain(array);
 
@@ -41,14 +37,17 @@ function lowChain<T>(_, array:T[], save): LowChain<T> {
     return chain
 }
 
-function low<T>(source: string,
-                    options:LowOptions = {},
-                    writeOnChange = true) : LowChain<T>|Promise<LowChain<T>> {
+export function low<T>(source?:string,
+                       options?:LowOptions,
+                       writeOnChange?):LowChain<T>|Promise<LowChain<T>> {
+
+    options = options || {};
+    writeOnChange = !(writeOnChange == false) || true;
 
     // Create a fresh copy of lodash
     const _ = lodash.runInContext();
 
-    var db :LowChain<T> = function (key) : LowChain<T>  {
+    var db:LowChain<T> = function (key):LowChain<T> {
 
         if (typeof db.object[key] === 'undefined') {
             db.object[key] = []
@@ -62,7 +61,7 @@ function low<T>(source: string,
 
         return <LowChain<T>>short
 
-    } as LowChain<T> ;
+    } as LowChain<T>;
 
     // Expose
     db._ = _;
@@ -77,7 +76,7 @@ function low<T>(source: string,
 
             if (storage.read) {
 
-                db.read = (s = source) : Promise<LowChain<T>> | LowChain<T> => {
+                db.read = (s = source):Promise<LowChain<T>> | LowChain<T> => {
 
                     const res = storage.read(s, db.deserialize);
 
@@ -95,7 +94,7 @@ function low<T>(source: string,
 
                     return db
                 };
-                
+
             }
 
             if (storage.write) {
@@ -121,7 +120,7 @@ function low<T>(source: string,
     });
 
     // Return a promise or nothing in sync mode or if the database hasn't changed
-    function _save() : Promise<{}> {
+    function _save():Promise<{}> {
 
         if (db.source && db.write && writeOnChange) {
             const str = JSON.stringify(db.object);
@@ -142,5 +141,3 @@ function low<T>(source: string,
         return db as LowChain<T>
     }
 }
-
-module.exports = low;

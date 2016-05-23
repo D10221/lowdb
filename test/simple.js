@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const test = require('tape');
 const tempfile = require('tempfile');
-var low = require('../built');
-const storage = require('../built/file-sync');
+var low = require('../dist/lowdb').low;
+const storage = require('../built/file-sync').storage;
 
 test('write', (t) => {
   const filename = tempfile();

@@ -1,5 +1,7 @@
 /* global localStorage */
+
 const test = require('tape');
+
 const browser = require('../built/browser');
 
 // Mock

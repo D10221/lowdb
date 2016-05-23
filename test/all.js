@@ -5,3 +5,4 @@ require('./operations');
 require('./mixin');
 require('./simple');
 require('./index');
+require('./usage');

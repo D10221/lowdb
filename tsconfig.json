@@ -7,6 +7,6 @@
     "outDir": "./built"
   },
   "exclude": [
-    "node_modules", "test","dist", "built"
+    "node_modules", "test","dist", "built", "src/lowdb.d.ts"
   ]
 }

@@ -8,3 +8,8 @@ dist
 !webpack.config.js
 built/
 typings/
+# until ...build-test is completed
+test/*.map
+test/index.js
+test/usage.js
+test/db.json

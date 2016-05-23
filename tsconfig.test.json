@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules", "src","dist", "built"
+  ],
+  "files" :[
+    "typings/tsd.d.ts",
+    "test/usage.ts",
+    "test/index.ts"
+  ]
+}

@@ -1,6 +1,6 @@
 const test = require('tape');
 
-var low = require('../built');
+var low = require('../dist/lowdb').low;
 
 test('operations', t => {
 

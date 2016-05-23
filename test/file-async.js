@@ -1,7 +1,7 @@
 const test = require('tape');
 const sinon = require('sinon');
 const tempfile = require('tempfile');
-const fileAsync = require('../built/file-async');
+const fileAsync = require('../built/file-async').storage;
 
 const obj = { a: 1 };
 

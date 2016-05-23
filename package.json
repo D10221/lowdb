@@ -16,13 +16,14 @@
     "embeddable",
     "extendable"
   ],
-  "main": ".",
-  "typings": "src/lowdb.d.ts",
+  "main": "dist/lowdb.js",
+  "typings": "built/lowdb.d.ts",
   "scripts": {
-    "test": "babel-node --sourceMaps=inline test/all | tap-spec",
+    "test": "node test/all | tap-spec",
     "prepublish": "npm run build",
     "precommit": "npm test",
-    "build": "npm run ts && npm run umd && npm run min ",
+    "build": "npm run ts && npm run umd && npm run min && npm run build-test",
+    "build-test": "tsc -p tsconfig.test.json",
     "umd": "webpack built/dist.js dist/lowdb.js --output-library low",
     "min": "webpack -p built/dist.js dist/lowdb.min.js --output-library low",
     "ts": "tsc -p ."

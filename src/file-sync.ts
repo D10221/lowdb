@@ -1,4 +1,4 @@
-import {LowStorage} from "./lowdb";
+import {LowStorage} from "./interfaces";
 
 const fs = require('graceful-fs') as GracefulFs;
 
@@ -8,7 +8,7 @@ const {parse, stringify} = require('./json');
 /***
  *
  */
-module.exports = {
+export var storage = {
     /***
      *
      */

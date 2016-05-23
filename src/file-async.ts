@@ -1,14 +1,15 @@
-import {LowStorage} from "./lowdb";
+
+import {LowStorage} from "./interfaces";
+
+import {storage as storageSync} from './file-sync'
 
 const steno = require('steno');
 
 const {stringify} = require('./json');
 
+export var storage = {
 
-
-module.exports = {
-
-    read: (require('./file-sync') as LowStorage<any>).read,
+    read: storageSync.read ,
 
     write: (dest, obj, serialize = stringify) => {
 
