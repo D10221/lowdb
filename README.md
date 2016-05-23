@@ -26,10 +26,11 @@ Diff:
 - removed: babel-node for tests (node v6 is ok with existing es6 features but async/await), thats why is compiled to preserve the original tests
 - extra step to buil test (...wip)
 - removed dependency from 'is-promise'
-- clash betweek 'typescript imports' and require('xxx')
+- clash between 'typescript imports' and require('xxx')
    resolved exporting  low ,
    it breaks usage but is cleaner from Typescript
-   ex:
+
+ex:
 
         var low = require('lowdb);
 
